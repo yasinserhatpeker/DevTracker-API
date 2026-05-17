@@ -131,10 +131,35 @@ class TaskDetailAPI(APIView):
         
         
         
-    def delete(self,task_id):
-        services.delete_task(task_id=task_id)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self,request,task_id):
+       try:
+            services.delete_task(task_id=task_id)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+       except ValidationError as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
     
+    
+    
+## TaskToggleApi
+
+class TaskToggleApi(APIView):
+    """
+    Route: /api/tasks/<int:task_id>/toggle/
+    """
+    def post(self,request,task_id):
+        try:
+            
+           updated_task=services.toggle_task_status(task_id=task_id)
+           output_serializer = TaskOutputSerializer(updated_task)
+           
+           return Response(output_serializer.data,status=status.HTTP_200_OK)
+       
+        except ValidationError as e:
+           return Response({"detail":str(e)},status=status.HTTP_400_BAD_REQUEST)
+    
+           
+            
     
 
     
