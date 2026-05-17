@@ -1,6 +1,6 @@
 from django.db import models
 
-class Project(models.Model):
+class Project(models.Model): # Project entity
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -10,7 +10,7 @@ class Project(models.Model):
         return self.title
 
 
-class Task(models.Model):
+class Task(models.Model): # Task entity
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
     
     title = models.CharField(max_length=200)
