@@ -8,9 +8,20 @@ class ProjectCreateSerializer(serializers.Serializer):
     description = serializers.CharField(required=False, allow_blank=True)
     
 
+class ProjectUpdateSerializer(serializers.Serializer):
+    title = serializers.CharField(max_length=200)
+    description = serializers.CharField(required=False, allow_blank =True)
+    
 class TaskCreateSerializer(serializers.Serializer):
     project_id = serializers.IntegerField()
     title = serializers.CharField(max_length=200)
+
+class TaskUpdateSerializer(serializers.Serializer):
+    title = serializers.CharField(max_length=200, required=False)
+    is_completed= serializers.BooleanField(required=False)
+    
+    
+
     
 
 ## READ SERIALIZERS(Response)
