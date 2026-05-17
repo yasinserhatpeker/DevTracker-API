@@ -1,0 +1,68 @@
+# =========================
+# 1. PYTHON & DJANGO
+# =========================
+# Python'un derlediği cache dosyaları
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Django'nun varsayılan SQLite veritabanı (Biz PostgreSQL kullanıyoruz ama kalmasında fayda var)
+db.sqlite3
+db.sqlite3-journal
+
+# =========================
+# 2. SANAL ORTAMLAR (VENV)
+# =========================
+venv/
+env/
+.venv/
+Pipfile.lock
+
+# =========================
+# 3. GÜVENLİK (ÇOK KRİTİK)
+# =========================
+# Şifreleri ve gizli anahtarları tuttuğumuz çevre değişkenleri asla gitmemeli!
+.env
+.env.*
+*.pem
+secrets.json
+
+# =========================
+# 4. İŞLETİM SİSTEMLERİ
+# =========================
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# --- Windows ---
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.cab
+*.lnk
+Desktop.ini
+$RECYCLE.BIN/
+
+# =========================
+# 5. IDE VE EDİTÖRLER
+# =========================
+# VS Code ayarları
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# =========================
+# 6. MEDYA VE STATİK DOSYALAR
+# =========================
+# Kullanıcıların yüklediği veya toplanmış statik dosyalar
+media/
+staticfiles/
