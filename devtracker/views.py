@@ -50,7 +50,7 @@ class ProjectListApi(APIView):
         
 ## Project Detail API
 
-class ProjectDetailAPI(APIView):
+class ProjectDetailApi(APIView):
     """
     Route: /api/projects/<int:project_id>/
     """
@@ -106,7 +106,7 @@ class TaskListApi(APIView):
         
         
     
-class TaskDetailAPI(APIView):
+class TaskDetailApi(APIView):
     """
     Route: /api/tasks/<int:task_id>
     """
