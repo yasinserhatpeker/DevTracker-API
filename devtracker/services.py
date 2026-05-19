@@ -1,5 +1,7 @@
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 from .models import Project,Task
+
 
 ## CREATE 
 
@@ -17,6 +19,17 @@ def create_task(*,project_id:str,title:str) -> Task:
     
     task = Task.objects.create(project_id=project_id,title=title)
     return task
+
+
+def create_user(*,username:str,email:str,password:str) -> User:
+    if User.objects.filter(username=username).exists():
+        raise ValidationError('This username is taken.')
+    if User.objects.filter(email=email).exists():
+        raise ValidationError('This email is taken.')
+    
+    user = User.objects.create_user(username=username,email=email,password=password)
+    return user
+    
 
 ## UPDATE
 
