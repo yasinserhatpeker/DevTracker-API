@@ -36,4 +36,4 @@ class ProjectOutputSerializer(serializers.ModelSerializer):
     task = TaskOutputSerializer(many=True, read_only=True)
     class Meta:
         model = Project
-        fields =('id','title','description','created_at','tasks')   
+        fields =('id','title','description','created_at','task')   
