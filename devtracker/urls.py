@@ -1,10 +1,14 @@
 from django.urls import path
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from .views import  (
     ProjectListApi,
+    RegisterApi,
+    LogoutApi,
     ProjectDetailApi,
     TaskListApi,
     TaskToggleApi,
-    TaskDetailApi
+    TaskDetailApi,
+   
 )
 
 urlpatterns = [
@@ -17,5 +21,13 @@ urlpatterns = [
     
     path('tasks/', TaskListApi.as_view(), name='tasks-list'),
     path('tasks/<int:task_id>/', TaskDetailApi.as_view(), name='task-detail'),
-    path('tasks/<int:task_id>/toggle/', TaskToggleApi.as_view(), name='task-toggle')
+    path('tasks/<int:task_id>/toggle/', TaskToggleApi.as_view(), name='task-toggle'),
+    
+    #Auth endpoint urls
+    path('auth/register/', RegisterApi.as_view(), name='auth-register'),
+    path('auth/login/', TokenObtainPairView.as_view(), name='auth-login'),
+    path('auth/refresh/',TokenRefreshView.as_view(), name='auth-refresh'),
+    path('auth/logout/',LogoutApi.as_view(), name='auth-logout')
+     
+  
  ]

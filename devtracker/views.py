@@ -185,7 +185,7 @@ class RegisterApi(APIView):
     
 class LogoutApi(APIView):
     """
-    Route: /api/user/register/
+    Route: /api/user/logout/
     """
     def post(self,request):
        try:
