@@ -20,6 +20,14 @@ class TaskUpdateSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200, required=False)
     is_completed= serializers.BooleanField(required=False)
     
+
+class RegisterSerializer(serializers.Serializer):
+     username = serializers.CharField(max_length=200)
+     email = serializers.EmailField(required=False, allow_blank=True),
+     password = serializers.CharField(write_only=True, min_length=6)
+     
+
+    
     
 
     
