@@ -10,7 +10,8 @@ from .serializers import (
     ProjectOutputSerializer,
     TaskCreateSerializer,
     TaskUpdateSerializer,
-    TaskOutputSerializer
+    TaskOutputSerializer,
+    RegisterSerializer
 )
 
 ## Project List API
@@ -160,8 +161,32 @@ class TaskToggleApi(APIView):
     
            
             
-    
+## User 
 
+class RegisterApi(APIView):
+    """
+    Route: /api/user/register/
+    """
+    def post(self,request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        try:
+            services.create_user(
+                username=serializer.validated_data['username'],
+                email=serializer.validated_data.get('email',''),
+                password=serializer.validated_data['password']
+                )
+            return Response({"detail":"Register successfully"},status=status.HTTP_201_CREATED)
+        except ValidationError as e:
+            return Response({"detail":str(e)},status=status.HTTP_400_BAD_REQUEST)
+        
+    
+class LogoutApi(APIView):
+    """
+    Route: /api/user/register/
+    """
+        
     
     
         
