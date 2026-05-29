@@ -6,7 +6,10 @@ def get_projects() -> QuerySet[Project]:
 
 
 def get_project_by_id(*,project_id:int) -> Project | None:
-    return Project.objects.filter(id=project_id).first() # fetching related project
+     try:
+         return Project.objects.get(id=project_id)
+     except Project.DoesNotExist:
+         return None
 
 
 def get_tasks_by_project(*,project_id:int) -> QuerySet[Task]:
