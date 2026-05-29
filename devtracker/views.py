@@ -166,7 +166,7 @@ class TaskToggleApi(APIView):
 
 class RegisterApi(APIView):
     """
-    Route: /api/user/register/
+    Route: /api/auth/register/
     """
     def post(self,request):
         serializer = RegisterSerializer(data=request.data)
@@ -185,7 +185,7 @@ class RegisterApi(APIView):
     
 class LogoutApi(APIView):
     """
-    Route: /api/user/logout/
+    Route: /api/auth/logout/
     """
     def post(self,request):
        try:

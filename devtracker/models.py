@@ -21,5 +21,5 @@ class Task(models.Model): # Task entity
     def __str__(self):
         return (f"{self.title} - {'is finished' if self.is_completed else 'is pending...'}")
 
-
+  
     
