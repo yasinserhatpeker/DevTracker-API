@@ -14,7 +14,7 @@ from .views import  (
 urlpatterns = [
     #Project endpoint urls
     
-    path('projects/', ProjectListApi.as_view(), name='Project-list'),
+    path('projects/', ProjectListApi.as_view(), name='project-list'),
     path('projects/<int:project_id>/', ProjectDetailApi.as_view(), name='project-detail'),
     
     #Task endpoint urls
