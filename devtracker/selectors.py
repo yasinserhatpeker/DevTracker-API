@@ -10,6 +10,6 @@ def get_project_by_id(*,project_id:int) -> Project | None:
 
 
 def get_tasks_by_project(*,project_id:int) -> QuerySet[Task]:
-    return Task.objects.filter(project_id=project_id).first()  # fetching tasks by a project
+    return Task.objects.filter(project_id=project_id) # fetching tasks by a project
 
 
