@@ -1,11 +1,10 @@
 from rest_framework import serializers
-from ..models import Project,Task
-
+from ..models import Project
 
 ## WRITE SERIALIZERS 
 
 class TaskCreateSerializer(serializers.Serializer):
-    project_id = serializers.IntegerField()
+    project_id = serializers.PrimaryKeyRelatedField(queryset = Project.objects.all(),source='project')
     title = serializers.CharField(max_length=200)
 
 class TaskUpdateSerializer(serializers.Serializer):
@@ -13,22 +12,6 @@ class TaskUpdateSerializer(serializers.Serializer):
     is_completed= serializers.BooleanField(required=False)
     
     
-## READ SERIALIZERS
-
-
-
-class TaskOutputSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Task
-        fields = ('id','title','is_completed','created_at')
-
-
-class ProjectOutputSerializer(serializers.ModelSerializer):
-    task = TaskOutputSerializer(many=True, read_only=True)
-    class Meta:
-        model = Project
-        fields =('id','title','description','created_at','task')   
- 
 
     
     
