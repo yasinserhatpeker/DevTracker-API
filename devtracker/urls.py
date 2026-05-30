@@ -1,15 +1,19 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
-from .views import  (
-    ProjectListApi,
-    RegisterApi,
+from .views.auth_views import (
     LogoutApi,
-    ProjectDetailApi,
-    TaskListApi,
-    TaskToggleApi,
-    TaskDetailApi,
-   
+    RegisterApi
 )
+from .views.project_views import (
+    ProjectListApi,
+    ProjectDetailApi,
+) 
+from .views.task_views import (
+    TaskListApi,
+    TaskDetailApi,
+    TaskToggleApi
+)
+
 
 urlpatterns = [
     #Project endpoint urls
