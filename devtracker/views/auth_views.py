@@ -3,9 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from .. import services
-from ..serializers.serializers import (
+from serializers.auth_serializers import (
   RegisterSerializer
 )
 
