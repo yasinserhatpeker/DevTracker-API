@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .. import selectors,services
-from ..serializers import (
+from ..serializers.serializers import (
     ProjectCreateSerializer,
     ProjectUpdateSerializer,
     ProjectOutputSerializer,

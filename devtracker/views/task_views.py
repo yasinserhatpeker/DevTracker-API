@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 from .. import services
-from ..serializers import (
+from ..serializers.serializers import (
   
     TaskCreateSerializer,
     TaskUpdateSerializer,
