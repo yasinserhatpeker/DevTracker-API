@@ -1,18 +1,19 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import ValidationError
-from rest_framework_simplejwt.tokens import RefreshToken
 from .. import selectors,services
+from serializers.output_serializers import ProjectOutputSerializer
 from serializers.project_serializers import (
     ProjectCreateSerializer,
     ProjectUpdateSerializer,
-    ProjectOutputSerializer,
 )
 
 ## Project List API
 
 class ProjectListApi(APIView): 
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/projects/
     """
@@ -46,11 +47,24 @@ class ProjectListApi(APIView):
     ## Project Detail API
 
 class ProjectDetailApi(APIView):
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/projects/<int:project_id>/
     """
     
+    def get(self,request,project_id): 
+        
+        project = selectors.get_project_by_id(project_id=project_id)
+        if not project:
+              return Response({"detail":"Project not found"}, status=status.HTTP_400_BAD_REQUEST)
+          
+        output_serializer = ProjectOutputSerializer(project)
+        return Response(output_serializer.data, status=status.HTTP_200_OK)
+        
+        
+    
     def put(self,request,project_id):
+        
         serializer = ProjectUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         

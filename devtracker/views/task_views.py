@@ -2,22 +2,25 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
-from .. import services
+from rest_framework.permissions import IsAuthenticated
+from .. import services,selectors
+from serializers.output_serializers import TaskOutputSerializer
 from serializers.task_serializers import (
   
     TaskCreateSerializer,
     TaskUpdateSerializer,
-    TaskOutputSerializer,
-    
+  
 )
 
-
-
-
 class TaskListApi(APIView):
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/tasks/
     """
+    def get(self,request):
+        tasks = selectors.get_tasks_by_project(user=request.user)
+        if not tasks:
+           return Response({"detail":"There's no task related to project"}, status=status.HTTP_400_BAD_REQUEST) 
     
     def post(self,request):
         serializer = TaskCreateSerializer(data=request.data)
@@ -37,9 +40,19 @@ class TaskListApi(APIView):
         
     
 class TaskDetailApi(APIView):
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/tasks/<int:task_id>
     """
+    
+    def get(self,request,task_id):
+        task = selectors.get_task_by_id(task_id=task_id)
+        if not task:
+            return Response({"detail":"Task not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        output_serializer = TaskOutputSerializer(task)
+        return Response(output_serializer.data, status=status.HTTP_200_OK)
+    
     
     def put(self, request, task_id):
         serializer = TaskUpdateSerializer(data=request.data)
@@ -74,6 +87,7 @@ class TaskDetailApi(APIView):
 ## TaskToggleApi
 
 class TaskToggleApi(APIView):
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/tasks/<int:task_id>/toggle/
     """

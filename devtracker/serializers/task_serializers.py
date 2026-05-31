@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Project
+from devtracker.models import Project
 
 ## WRITE SERIALIZERS 
 

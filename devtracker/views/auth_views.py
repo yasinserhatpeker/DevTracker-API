@@ -3,14 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 from .. import services
 from serializers.auth_serializers import (
   RegisterSerializer
 )
-
-
-           
-            
 ## User 
 
 class RegisterApi(APIView):
@@ -33,6 +30,7 @@ class RegisterApi(APIView):
         
     
 class LogoutApi(APIView):
+    permission_classes=[IsAuthenticated]
     """
     Route: /api/auth/logout/
     """

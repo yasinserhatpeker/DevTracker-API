@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from .models import Project,Task
+from devtracker.models import Project,Task
 
 
 ## CREATE 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Project,Task
+from devtracker.models import Project,Task
 
 ## READ SERIALIZERS
 
