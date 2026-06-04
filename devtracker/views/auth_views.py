@@ -4,7 +4,7 @@ from rest_framework import status
 from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
-from .. import services
+from ..services import services
 from devtracker.serializers import (
     RegisterSerializer
 )
