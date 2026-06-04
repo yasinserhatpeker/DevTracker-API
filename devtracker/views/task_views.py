@@ -4,12 +4,10 @@ from rest_framework import status
 from django.core.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from .. import services,selectors
-from serializers.output_serializers import TaskOutputSerializer
-from serializers.task_serializers import (
-  
+from devtracker.serializers import(
     TaskCreateSerializer,
-    TaskUpdateSerializer,
-  
+    TaskOutputSerializer,
+    TaskUpdateSerializer
 )
 
 class TaskListApi(APIView):

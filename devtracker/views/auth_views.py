@@ -5,8 +5,8 @@ from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from .. import services
-from serializers.auth_serializers import (
-  RegisterSerializer
+from devtracker.serializers import (
+    RegisterSerializer
 )
 ## User 
 

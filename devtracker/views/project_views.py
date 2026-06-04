@@ -4,12 +4,12 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import ValidationError
 from .. import selectors,services
-from serializers.output_serializers import ProjectOutputSerializer
-from serializers.project_serializers import (
+from devtracker.serializers import (
     ProjectCreateSerializer,
-    ProjectUpdateSerializer,
+    ProjectOutputSerializer,
+    ProjectUpdateSerializer
+       
 )
-
 ## Project List API
 
 class ProjectListApi(APIView): 
