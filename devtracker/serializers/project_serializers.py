@@ -8,6 +8,6 @@ class ProjectCreateSerializer(serializers.Serializer):
     
 
 class ProjectUpdateSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=200)
+    title = serializers.CharField(max_length=200, required=False)
     description = serializers.CharField(required=False, allow_blank =True)
     
