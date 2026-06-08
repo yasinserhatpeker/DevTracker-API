@@ -6,18 +6,12 @@ def get_projects() -> QuerySet[Project]:
 
 
 def get_project_by_id(*,project_id:int) -> Project | None:
-     try:
-         return Project.objects.get(id=project_id)
-     except Project.DoesNotExist:
-         return None
-
-
+     return Project.objects.prefetch_related('projects').get(id=project_id).first()
+    
 def get_tasks_by_project(*,project_id:int) -> QuerySet[Task]:
     return Task.objects.filter(project_id=project_id) # fetching tasks by a project
  
 
 def get_task_by_id(*,task_id:int) -> Task | None:
-    try:
-        return Task.objects.get(id=task_id)
-    except Task.DoesNotExist:
-        return None
+    return Task.objects.get(id=task_id).first()
+    
